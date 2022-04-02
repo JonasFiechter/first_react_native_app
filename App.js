@@ -16,7 +16,21 @@ const App = () => {
 
   const [name, setName] = useState('Mash')
 
+  const [session, setSession] = useState({number: 0, title: 'State: '})
+
   const isDarkMode = useColorScheme() === 'dark';
+
+  function onClickHandler() {
+    setName('This is the Mash app')
+  }
+
+  function onClickHandler2() {
+    setName('Mash')
+  }
+
+  function onClickHandler3() {
+    setSession({number: session.number + 1, title: 'Changed'})
+  }
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -24,8 +38,11 @@ const App = () => {
 
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>My First android app</Text>
-      <Button onPress={()=>{Linking.openURL('https://github.com/JonasFiechter')}} style={styles.button} title='Testing button'></Button>
+      <Text style={styles.text}>{session.title} {session.number}</Text>
+      <Text style={styles.text}>{name}</Text>
+      <Button onPress={onClickHandler} style={styles.button} title='Change app name'></Button>
+      <Button onPress={onClickHandler2} style={styles.button} title='Change app name back'></Button>
+      <Button onPress={onClickHandler3} style={styles.button} title='Update session'></Button>
     </View>
   );
 };
@@ -43,7 +60,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    color: '#363'
+    color: '#363',
+    margin: 5,
   },
 });
 
